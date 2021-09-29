@@ -6,9 +6,9 @@ namespace FightingSpel
 {
     public class Fighter
     {
-        public int hp = 500;
-        private bool isALive;
-
+        public int hp;
+        public int armor;
+        public int dodge;
         public int Hp
         {
             get
@@ -21,20 +21,50 @@ namespace FightingSpel
                 hp = Math.Max(hp, 0);
             }
         }
+
         private List<string> names = new List<string>() { "Josephine", "Alex", "Christina", "Jörgen", "Nicolas", "Björn" };
         Random generator = new Random();
-        private string name;
+        public int i;
+        public string name;
+
+        public Weapon weapon;
 
         public Fighter()
         {
-            name = names[generator.Next(0, 6)];
+            i = generator.Next(0, 6);
+            name = names[i];
+            weapon = new Weapon(i);
+
+            if (i == 0 || i == 4)
+            {
+                armor = 14;
+                dodge = 30;
+                hp = 400;
+            }
+            else if (i == 1 || i == 2)
+            {
+                armor = 10;
+                dodge = 60;
+                hp = 350;
+            }
+            else if (i == 3 || i == 5)
+            {
+                armor = 18;
+                dodge = 10;
+                hp = 600;
+            }
         }
+
+        // public int Fight()
+        // {
+
+        // }
 
         public bool GetAlive(int fHp)
         {
             bool alive;
 
-            if (hp > 0)
+            if (fHp > 0)
             {
                 alive = true;
             }
