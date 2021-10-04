@@ -17,8 +17,8 @@ namespace FightingSpel
                 round++;
                 Console.WriteLine($"Round {round}");
                 Console.ReadLine();
-                fighter1.weapon.Attack(fighter1.dodge, fighter1.armor, fighter1.weapon.damage, fighter1.hp);
-                fighter2.weapon.Attack(fighter2.dodge, fighter2.armor, fighter2.weapon.damage, fighter2.hp);
+                fighter1.weapon.Attack(fighter1.dodge, fighter1.armor, fighter2.weapon.damage, fighter1.hp, fighter1.name, fighter2.weapon.multiplier, fighter2.name);
+                fighter2.weapon.Attack(fighter2.dodge, fighter2.armor, fighter1.weapon.damage, fighter2.hp, fighter2.name, fighter1.weapon.multiplier, fighter1.name);
             }
 
             Console.ReadLine();

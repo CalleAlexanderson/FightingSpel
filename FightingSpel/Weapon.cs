@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using System;
 using System.Collections.Generic;
 
@@ -32,11 +33,22 @@ namespace FightingSpel
             }
         }
 
-        public int Attack(int dodge, int armor, int dmg, int hp)
+        public int Attack(int dodge, int armor, int dmg, int health, string name1, int multi, string name2)
         {
+            int damage = dmg * generator.Next(multi) - armor;
+            damage = Math.Max(damage, 0);
 
-            //generator.Next(0, multiplier);
-            int health = 0;
+            if (!(generator.Next(100) < dodge))
+            {
+                health -= damage;
+                Console.WriteLine();
+            }
+            else
+            {
+                List<string> dodges = new List<string>() { $"{name1} dodged!", $"{name1} avoided the attack!", $"{name2} missed!", $"{name1} evaded the strike!", $"{name2} fumbled the attack!" };
+                Console.WriteLine(dodges[generator.Next(0, 4)]);
+            }
+
 
             return health;
         }
