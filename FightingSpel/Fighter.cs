@@ -55,11 +55,11 @@ namespace FightingSpel
             }
         }
 
-        public bool GetAlive(int fHp)
+        public bool GetAlive()
         {
             bool alive;
 
-            if (fHp > 0)
+            if (hp > 0)
             {
                 alive = true;
             }

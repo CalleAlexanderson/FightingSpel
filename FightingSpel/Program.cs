@@ -10,15 +10,17 @@ namespace FightingSpel
             Fighter fighter2 = new Fighter();
             int round = 0;
 
-            System.Console.WriteLine($"Fighters:\n{fighter1.name}, weapon of choice: {fighter1.weapon.weaponName} \n{fighter2.name}, weapon of choice: {fighter2.weapon.weaponName} ");
-
-            while (fighter1.GetAlive(fighter1.hp) && fighter2.GetAlive(fighter2.hp))
+            Console.WriteLine($"Fighters:\n{fighter1.name}, weapon of choice: {fighter1.weapon.weaponName} \n{fighter2.name}, weapon of choice: {fighter2.weapon.weaponName} ");
+            Console.WriteLine();
+            while (fighter1.GetAlive() && fighter2.GetAlive())
             {
                 round++;
-                Console.WriteLine($"Round {round}");
+                Console.WriteLine($"Current hp:\n{fighter1.name}: {fighter1.hp}\n{fighter2.name}: {fighter2.hp}");
                 Console.ReadLine();
-                fighter1.weapon.Attack(fighter1.dodge, fighter1.armor, fighter2.weapon.damage, fighter1.hp, fighter1.name, fighter2.weapon.multiplier, fighter2.name);
-                fighter2.weapon.Attack(fighter2.dodge, fighter2.armor, fighter1.weapon.damage, fighter2.hp, fighter2.name, fighter1.weapon.multiplier, fighter1.name);
+                Console.WriteLine($"Round {round}");
+                fighter1.weapon.Attack(fighter1, fighter2);
+                fighter2.weapon.Attack(fighter2, fighter1);
+                Console.WriteLine();
             }
 
             Console.ReadLine();
