@@ -22,7 +22,7 @@ namespace FightingSpel
             }
         }
 
-        private List<string> names = new List<string>() { "Josephine", "Alex", "Christina", "Jörgen", "Nicolas", "Björn" };
+        private static List<string> names = new List<string>() { "Josephine", "Alex", "Christina", "Jörgen", "Nicolas", "Björn" };
         Random generator = new Random();
         public int i;
         public string name;
@@ -31,8 +31,9 @@ namespace FightingSpel
 
         public Fighter()
         {
-            i = generator.Next(0, 6);
+            i = generator.Next(0, names.Count);
             name = names[i];
+            names.Remove(name);
             weapon = new Weapon(i);
 
             if (i == 0 || i == 4)
@@ -51,7 +52,7 @@ namespace FightingSpel
             {
                 armor = 18;
                 dodge = 10;
-                hp = 600;
+                hp = 500;
             }
         }
 

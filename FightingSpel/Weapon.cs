@@ -18,13 +18,13 @@ namespace FightingSpel
             if (i == 0 || i == 4)
             {
                 damage = 4;
-                multiplier = 12;
+                multiplier = 13;
 
             }
             else if (i == 1 || i == 2)
             {
                 damage = 3;
-                multiplier = 14;
+                multiplier = 16;
             }
             else if (i == 3 || i == 5)
             {
@@ -35,19 +35,40 @@ namespace FightingSpel
 
         public void Attack(Fighter self, Fighter enemy)
         {
-            int dmg = damage * generator.Next(multiplier) - enemy.armor;
-            damage = Math.Max(damage, 0);
+            int x = generator.Next(1, multiplier);
+            int dmg = damage * x - enemy.armor;
+            dmg = Math.Max(dmg, 0);
 
             if (!(generator.Next(100) < enemy.dodge))
             {
-                enemy.hp -= dmg;
                 List<string> attacks = new List<string>() { $"{enemy.name} got hit!", $"{enemy.name} did not manage to avoid the attack!", $"{self.name} struck {enemy.name}!", $"{self.name} aim was true!", $"{self.name}'s attack connected!" };
                 Console.WriteLine(attacks[generator.Next(0, 5)]);
+
+                if (x == multiplier - 1)
+                {
+                    enemy.Hp -= dmg * 2;
+                    Console.WriteLine("Critical hit!");
+                }
+                else
+                {
+                    enemy.Hp -= dmg;
+                }
+
+                if (dmg == 0)
+                {
+                    Console.WriteLine("The damage was blocked");
+                }
+                else
+                {
+                    Console.WriteLine($"{self.name} dealt {dmg} damage!");
+                }
+                Console.WriteLine();
             }
             else
             {
                 List<string> dodges = new List<string>() { $"{enemy.name} dodged!", $"{enemy.name} avoided the attack!", $"{self.name} missed!", $"{enemy.name} evaded the strike!", $"{self.name} fumbled the attack!" };
                 Console.WriteLine(dodges[generator.Next(0, 5)]);
+                Console.WriteLine();
             }
         }
     }

@@ -17,10 +17,19 @@ namespace FightingSpel
                 round++;
                 Console.WriteLine($"Current hp:\n{fighter1.name}: {fighter1.hp}\n{fighter2.name}: {fighter2.hp}");
                 Console.ReadLine();
+                Console.Clear();
                 Console.WriteLine($"Round {round}");
                 fighter1.weapon.Attack(fighter1, fighter2);
                 fighter2.weapon.Attack(fighter2, fighter1);
-                Console.WriteLine();
+            }
+            Console.Clear();
+            if (fighter1.Hp == 0)
+            {
+                Console.WriteLine($"{fighter2.name} won!");
+            }
+            else if (fighter2.Hp == 0)
+            {
+                Console.WriteLine($"{fighter1.name} won!");
             }
 
             Console.ReadLine();
